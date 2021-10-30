@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const {Articles, Comments, Users} = require('./models');
-const session = reqiure('express-session');
+const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Express setup
@@ -36,6 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 // Sync database server for testing, then start the express server
-sequelize.sync({force: true}).then(() => {
+sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 }); 

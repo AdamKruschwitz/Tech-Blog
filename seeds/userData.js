@@ -12,12 +12,12 @@ const userData = [
     {
         username: "LarryComplains",
         email: "LarryAire@gmail.com",
-        password: bcrypt.hashSync('EverythingSucks4Me', saltRounds);
+        password: bcrypt.hashSync('EverythingSucks4Me', saltRounds)
     },
     {
         username: "robocop",
         email: "ro@bo.cop",
-        password: bcrypt.hashSync('robocop!', saltRounds);
+        password: bcrypt.hashSync('robocop!', saltRounds)
     }
 ];
 
