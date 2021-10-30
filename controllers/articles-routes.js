@@ -14,8 +14,16 @@ router.get('/', async (req, res) => {
 
 // Get's a specific article
 router.get('/:id', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.id);
+    try {
+        const article = await Articles.findByPk(req.params.id);
+        if(!article) {
+            res.render('404');
+            return;
+        }
+        res.render('article', article.get({plain: true}));
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
