@@ -1,0 +1,25 @@
+const path = require('path');
+const express = require('express');
+const expressHandlebars = require('express-handlebars');
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+
+// Express setup
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Handlebars setup
+const handlebars = expressHandlebars.create();
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
+// Express configurations
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(routes);
+
+// Sync database server for testing, then start the express server
+sequelize.sync({force: true}).then(() => {
+    app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+}); 
