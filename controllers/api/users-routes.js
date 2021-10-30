@@ -28,11 +28,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         // get the user
-        const user = await Users.findOne({
-            where: {
-                id: req.params.id
-            }
-        });
+        const user = await Users.findByPk(req.params.id)
         // If the user isn't found, return with a 404
         if(!user) {
             res.status(404).json({response: "User not found."});
@@ -57,8 +53,30 @@ router.delete('/:id', async (req, res) => {
 
 // Modify a user
 router.put('/:id', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.id);
+    try {
+        // Get the user
+        const user = await Users.findByPk(req.params.id);
+        // If the user isn't found, return a 404
+        if(!user) {
+            res.status(404).json({response: "User not found"});
+            return;
+        }
+        // If the user isn't currently logged in, return a 403
+        if(user.getID() !== req.session.curUserID) {
+            res.status(403).json({response: "Must be logged in as user to modify account information."});
+            return;
+        }
+        // Otherwise, update the user and return a status 200
+        await user.update({
+            email: req.body.email,
+            username: req.body.username,
+            password: await bcrypt.hash(req.body.password, saltRounds)
+        });
+        // TODO - remove hashed password from this response
+        res.status(200).json({user: user, response: "User updated successfully"});
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 
