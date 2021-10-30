@@ -3,6 +3,7 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
+const {Articles, Comments, Users} = require('./models');
 
 // Express setup
 const app = express();
