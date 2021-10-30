@@ -12,4 +12,14 @@ router.get('/', (req, res) => {
     res.render('homepage');
 });
 
+router.get('/login', async (req, res) => {
+    // TODO
+    res.status(200).send('logging in');
+});
+
+router.get('/logout', async (req, res) => {
+    // TODO
+    res.status(200).send('logging out');
+})
+
 module.exports = router;
