@@ -24,7 +24,8 @@ Articles.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: User
+                model: 'users',
+                key: 'id'
             }
         }
     },
@@ -32,4 +33,6 @@ Articles.init(
         sequelize,
         modelName: 'articles'
     }
-)
+);
+
+module.exports = Articles;
