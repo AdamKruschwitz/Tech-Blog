@@ -10,6 +10,11 @@ router.use('/comments', comments);
 
 router.post('/login', async (req, res) => {
     try {
+        // Do not attempt to log in again if user is already logged in
+        if(req.session.loggedIn) {
+            res.status(403).json({response: "Must logout before logging in again."});
+            return;
+        }
         // Get user based on email
         const user = await Users.findOne({
             where: {
@@ -35,6 +40,8 @@ router.post('/login', async (req, res) => {
         // Start the session with loggedIn=true
         req.session.save(() => {
             req.session.loggedIn = true;
+            req.session.curUserID = user.getID();
+            console.log(req.session);
             res.status(200).json({ user: user, result: `You are now logged in.`})
         });
     } catch (err) {
