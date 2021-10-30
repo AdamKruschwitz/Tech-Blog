@@ -26,8 +26,33 @@ router.post('/', async (req, res) => {
 
 // Delete a user
 router.delete('/:id', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.id);
+    try {
+        // get the user
+        const user = await Users.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        // If the user isn't found, return with a 404
+        if(!user) {
+            res.status(404).json({response: "User not found."});
+            return;
+        }
+
+        //If the user found is not logged in as the current user, return with a 403
+        if(user.getID() !== req.session.curUserID) {
+            res.status(403).json({response: "Must be logged in as user to delete account."});
+            return;
+        }
+
+        // Otherwise, delete the user and log out.
+        const username = user.username;
+        await user.destroy();
+        console.log(`Deleted user ${username}.`);
+        res.status(200).json({response: "User deleted successfully."});
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // Modify a user
