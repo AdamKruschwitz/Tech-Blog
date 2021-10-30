@@ -6,7 +6,7 @@ const { Users } = require('../../models');
 
 router.use('/articles', articles);
 router.use('/users', users);
-router.use('/comments', users);
+router.use('/comments', comments);
 
 router.post('/login', async (req, res) => {
     try {

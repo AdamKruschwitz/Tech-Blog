@@ -21,7 +21,7 @@ const sessionConfig = {
     secret: 'cancancanyoudothecancan',
     cookie: {},
     resave: false,
-    saveUnititialized: true,
+    saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize
     })
