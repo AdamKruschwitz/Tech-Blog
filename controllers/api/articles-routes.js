@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
         }
 
         // If the current user isn't logged in as the author, return a 403
-        if(!(article.getAuthorID() === req.session.curUserID)) {
+        if(article.getAuthorID() !== req.session.curUserID) {
             res.status(403).json({response: "Must be logged in as the author to change this article."});
             return;
         }
@@ -55,8 +55,31 @@ router.put('/:id', async (req, res) => {
 
 // Delete an article
 router.delete('/:id', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.id);
+    try {
+        const article = await Articles.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        //If the article wasn't found, return with a 404 error
+        if(!article) {
+            res.status(404).json({response: "Article not found."});
+            return;
+        }
+
+        // If the current user isn't logged in, return with a 403 error
+        if(article.getAuthorID() !== req.session.curUserID) {
+            res.status(403).json({response: "Must be logged in as the author to delete this article."});
+            return;
+        }
+
+        // Otherwise, delete the article
+        const title = article.title;
+        await article.destroy();
+        res.status(200).json({response: `Article '${title}' deleted successfully.`})
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;

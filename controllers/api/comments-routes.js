@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
             return;
         }
         // If the author of this comment isn't the currently logged in user, return a 403
-        if(!(comment.getAuthorID() === req.session.curUserID)) {
+        if(comment.getAuthorID() !== req.session.curUserID) {
             res.status(403).json({ result: "Must be logged in as the author of this comment to edit it." });
             return;
         }
@@ -69,7 +69,7 @@ router.delete('/:id', async (req, res) => {
             return;
         }
         // If the author of the comment isn't currently logged in, return a 403
-        if(!(comment.getAuthorID() === req.session.curUserID)) {
+        if(comment.getAuthorID() !== req.session.curUserID) {
             res.status(403).json({ result: "Must be logged in as the author of this comment to delete it." });
             return;
         }
