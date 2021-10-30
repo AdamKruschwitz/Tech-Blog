@@ -17,8 +17,28 @@ router.get('/', async (req, res) => {
 
 // Renders a single user page
 router.get('/:username', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.username);
+    try {
+        // Get the user
+        const user = await Users.findOne({
+            where: {
+                username: req.params.username
+            },
+            include: [{model: Articles}],
+            attributes: {
+                exclude: ['password']
+            }
+        });
+        // console.log(user.get({plain: true}));
+        // If the user doesn't exist, render 404
+        if(!user) {
+            res.render('404');
+            return;
+        }
+        // Otherwise, render the author page
+        res.render( 'author', user.get({plain: true}) );
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
