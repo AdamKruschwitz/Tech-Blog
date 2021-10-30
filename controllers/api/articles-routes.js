@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
             return;
         }
         // Create a new article
-        const article = Articles.create({
+        const article = await Articles.create({
             title: req.body.title,
             body: req.body.body,
             author_id: req.session.curUserID
@@ -23,8 +23,34 @@ router.post('/', async (req, res) => {
 
 // Update the body of an article
 router.put('/:id', async (req, res) => {
-    // TODO
-    res.status(200).send(req.params.id);
+    try {
+        // Get the article
+        const article = await Articles.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        // If the article isn't found, return a 404
+        if(!article) {
+            res.status(404).json({response: "Article not found"});
+            return;
+        }
+
+        // If the current user isn't logged in as the author, return a 403
+        if(!(article.getAuthorID() === req.session.curUserID)) {
+            res.status(403).json({response: "Must be logged in as the author to change this article."});
+            return;
+        }
+
+        // Otherwise, update the article and return a 200
+        article.update({
+            title: req.body.title,
+            body: req.body.body
+        });
+        res.status(200).json({article: article, response: "Article updated successfully."});
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // Delete an article

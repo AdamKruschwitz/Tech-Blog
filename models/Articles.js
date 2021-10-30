@@ -1,7 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Articles extends Model {}
+class Articles extends Model {
+    getAuthorID() {
+        return this.author_id;
+    }
+}
 
 Articles.init(
     {
