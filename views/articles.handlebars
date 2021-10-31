@@ -1,4 +1,10 @@
-<p>I am the articles page</p>
-{{#each articles as |articles|}}
-<p> article: {{title}}</p>
-{{/each}}
+<div class="row text-center">
+    <h1 class="display-1 p-5">All Articles</h1>
+    <div class="col-12 col-lg-9 container justify-content-center align-items-center">
+        <section class="accordians" id="accordianMain"></section>
+            {{#each articles as |article|}}
+            {{> featured-article}}
+            {{/each}}
+        </section>
+    </div>
+</div>

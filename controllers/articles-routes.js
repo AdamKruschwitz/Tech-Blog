@@ -1,10 +1,13 @@
 const router = require('express').Router();
-const {Articles} = require('../models');
+const {Articles, Users} = require('../models');
 
 // Get a list of all articles
 router.get('/', async (req, res) => {
     try {
-        const articles = await Articles.findAll();
+        const articles = await Articles.findAll({
+            include: [{model: Users}],
+            order: [['likes', 'DESC']]
+        });
         const articlesJSON = articles.map( (article) => article.get({plain: true}) );
         res.render('articles', {articles: articlesJSON});
     } catch (err) {
