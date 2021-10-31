@@ -1,4 +1,8 @@
-<h1>Authors</h1>
-{{#each authors as |author|}}
-<p>{{username}}</p>
-{{/each}}
+<div class="row text-center">
+    <h1 class="display-1">Authors</h1>
+    <div class="accordian" id="usersAccordian">
+    {{#each authors as |author|}}
+    {{>user-card}}
+    {{/each}}
+    </div>
+</div>

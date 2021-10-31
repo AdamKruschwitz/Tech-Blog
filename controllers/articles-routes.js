@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             order: [['likes', 'DESC']]
         });
         const articlesJSON = articles.map( (article) => article.get({plain: true}) );
-        res.render('articles', {articles: articlesJSON});
+        res.render('articles', { articles: articlesJSON, loggedIn: req.session.loggedIn });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -26,7 +26,8 @@ router.get('/:id', async (req, res) => {
             return;
         }
         // console.log(article.get({plain: true}));
-        res.render('article', article.get({plain: true}));
+        const articleJSON = article.get({plain: true});
+        res.render('article', { article: articleJSON, loggedIn: req.session.loggedIn });
     } catch (err) {
         res.status(500).json(err);
     }

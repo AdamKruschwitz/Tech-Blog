@@ -1,0 +1,19 @@
+<section class="accordion-item bg-dark p-4">
+    <div class="accordion-header bg-dark pt-2">
+        <a class="text-reset text-decoration-none text-start" href="/authors/{{username}}">
+            <p class="display-5">{{username}}</p>
+        </a>
+        <button class="accordion-button bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{id}}" aria-expanded="false" aria-controls="collapse{{id}}">
+            <h2 class="lead">See articles</h2>
+        </button>
+    </div>
+    <div id="collapse{{id}}" class="accordion-collapse collapse bg-medium" aria-labelledby="heading{{id}}" data-bs-parent="#accordionUsers">
+        <div class="accordion body text-start">
+            <ul class="list-group bg-dark">
+            {{#each articles as |article|}}
+                <li class="list-group-item bg-dark"><a class="text-reset" href="/articles/{{id}}">{{title}}</a></li>
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+</section>

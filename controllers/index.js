@@ -6,7 +6,7 @@ const { Articles, Users } = require('../models');
 
 router.use('/api', api);
 router.use('/articles', articles);
-router.use('/users', users);
+router.use('/authors', users);
 
 router.get('/', async (req, res) => {
     const featuredArticles = await Articles.findAll({

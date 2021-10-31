@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         });
         const usersJSON = users.map( (user) => user.get({plain: true}) )
         // console.log(usersJSON);
-        res.render('authors', {authors: usersJSON});
+        res.render('authors', {authors: usersJSON, loggedIn: req.session.loggedIn});
     } catch (err) {
         res.status(500).json(err);
     }
@@ -35,7 +35,8 @@ router.get('/:username', async (req, res) => {
             return;
         }
         // Otherwise, render the author page
-        res.render( 'author', user.get({plain: true}) );
+        const userJSON = user.get({plain: true});
+        res.render( 'author', {author: userJSON, loggedIn: req.session.loggedIn} );
     } catch (err) {
         res.status(500).json(err);
     }
