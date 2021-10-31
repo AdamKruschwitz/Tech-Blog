@@ -10,9 +10,9 @@ const userData = [
         password: bcrypt.hashSync('PS1forever!', saltRounds)
     },
     {
-        username: "LarryComplains",
+        username: "LarryLeftie",
         email: "LarryAire@gmail.com",
-        password: bcrypt.hashSync('EverythingSucks4Me', saltRounds)
+        password: bcrypt.hashSync('B4gl3Sl1c3r!', saltRounds)
     },
     {
         username: "robocop",

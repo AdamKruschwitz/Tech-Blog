@@ -16,12 +16,17 @@ Articles.init(
             autoIncrement: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         body: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(2048),
             allowNull: false
+        },
+        likes: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         },
         author_id: {
             type: DataTypes.INTEGER,

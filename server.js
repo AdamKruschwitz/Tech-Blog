@@ -12,7 +12,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Handlebars setup
-const handlebars = expressHandlebars.create();
+const handlebars = expressHandlebars.create({
+    
+});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 

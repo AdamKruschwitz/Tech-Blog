@@ -1,8 +1,11 @@
 
 <div class="row">
-    {{!-- featured article --}}
-
-    {{!-- collapsible article scroll --}}
-
-    {{!--  --}}
+    {{!-- featured articles --}}
+    <div class="col-12 col-lg-9 container justify-content-center align-items-center p-5">
+        <section class="accordian" id="accordianMain"></section>
+            {{#each articles as |article|}}
+            {{> featured-article}}
+            {{/each}}
+        </section>
+    </div>
 </div>

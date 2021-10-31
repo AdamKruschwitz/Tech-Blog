@@ -28,3 +28,17 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+.bg-dark {
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+.bg-medium {
+    background-color: var(--medium);
+    color: var(--light);
+}
+
+.accordion-button::after {
+    color: var(--highlight) !important;
+}
