@@ -1,0 +1,30 @@
+* {
+    --dark: #222831;
+    --medium: #393E46;
+    --light: #EEEEEE;
+    --highlight: #FFD369;
+}
+
+nav {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+body {
+    background-color: var(--medium);
+    color: var(--light);
+}
+
+footer {
+    background-color: var(--dark);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
