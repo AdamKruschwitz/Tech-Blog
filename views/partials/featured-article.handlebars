@@ -18,11 +18,7 @@
         <button class="accordion-button bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{id}}" aria-expanded="false" aria-controls="collapse{{id}}">
             <div class="container">
                 <div class="row">
-                    <div class="col-1 d-flex flex-column text-center align-items-center">
-                        <a href="#"><i class="bi bi-chevron-up upvote"></i></a>
-                        <p class="lead">{{likes}}</p>
-                        <a href="#"><i class="bi bi-chevron-down downvote"></i></a>
-                    </div>
+                    {{>upvote}}
                     <div class="col-11 d-flex align-items-center">
                         <h1 class="display-5">{{title}}</h1>
                         <h2 class="lead ms-auto">By {{user.username}}</h2>
@@ -31,7 +27,7 @@
             </div>
         </button>
     </h2>
-    <div id="collapse{{id}}" class="accordion-collapse collapse" aria-labelledby="heading{{id}}" data-bs-parent="#accordionMain">
+    <div id="collapse{{id}}" class="accordion-collapse collapse bg-medium" aria-labelledby="heading{{id}}" data-bs-parent="#accordionMain">
         <div class="accordion-body text-start">
             {{body}}
         </div>

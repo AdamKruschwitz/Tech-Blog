@@ -1,2 +1,19 @@
-<h1>{{title}} </h1>
-<p>{{body}}</p>
+<div class="row align-items-center">
+    {{> upvote }}
+    <div class="col-11">
+        <div class="p-5 text-center">
+            <h1 class="display-1">{{title}} </h1>
+            <h2 class="lead">By {{user.username}}</h2>
+        </div>
+        <p>{{body}}</p>
+    </div>
+</div>
+<hr>
+<h2 class="display-5">Comments</h2>
+<div class="row">
+    {{#each comments as |comment|}}
+    <div class="p-3">
+        {{> comment }}
+    </div>
+    {{/each}}
+</div>
