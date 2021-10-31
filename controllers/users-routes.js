@@ -23,7 +23,7 @@ router.get('/:username', async (req, res) => {
             where: {
                 username: req.params.username
             },
-            include: [{model: Articles}],
+            include: [{model: Articles, include: [{model: Users}]}],
             attributes: {
                 exclude: ['password']
             }

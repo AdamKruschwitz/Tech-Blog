@@ -1,4 +1,12 @@
-<h1>{{username}}</h1>
-{{#each articles as |article|}}
-<h2>{{title}}</h2>
-{{/each}}
+{{#with author}}
+<div class="row text-center">
+    <h1 class="display-1">Articles by {{username}}</h1>
+    <div class="col-12 container justify-content-center align-items-center">
+        <section class="accordians" id="accordianMain"></section>
+            {{#each articles as |article|}}
+            {{> featured-article}}
+            {{/each}}
+        </section>
+    </div>
+</div>
+{{/with}}
