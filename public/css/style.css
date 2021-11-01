@@ -13,20 +13,21 @@ nav {
 body {
     background-color: var(--medium);
     color: var(--light);
+    height: 100vh;
 }
 
 footer {
     background-color: var(--dark);
-}
 
-footer {
+    display: block;
     position: absolute;
     bottom: 0;
-    left: 0;
 
     width: 100%;
     text-align: center;
-    padding: 20px;
+    margin-bottom: top;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .bg-dark {
@@ -41,4 +42,12 @@ footer {
 
 .accordion-button::after {
     color: var(--highlight) !important;
+}
+
+.nav-item {
+    color: var(--light);
+}
+
+.nav-item:hover {
+    color: var(--highlight);
 }
