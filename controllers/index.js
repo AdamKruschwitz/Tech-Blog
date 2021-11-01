@@ -22,4 +22,26 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/dashboard', async (req, res) => {
+    console.log('dashboard get processing')
+    if(!req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    console.log('confirmed user login')
+    try {
+        console.log('Getting user articles')
+        const articles = await Articles.findAll({
+            where: {
+                author_id: req.session.curUserID
+            }
+        });
+        const articlesJSON = articles.map((article) => article.get({plain: true}));
+        console.log(articlesJSON);
+        res.render('dashboard', {loggedIn: req.session.loggedIn, articles: articlesJSON});
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 module.exports = router;
