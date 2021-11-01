@@ -12,9 +12,13 @@
 {{/with}}
 <hr>
 <h2 class="display-5">Comments</h2>
-
+<div class="form-group">
+    <label for="comment-body">Post a Comment</label>
+    <textarea class="form-control" id="comment-body" placeholder="Enter your comment here..."></textarea>
+    <button type="button" class="btn btn-primary mt-2" id="submit-comment">Submit</button>
+</div>
 <div class="row">
-    {{#each articles.comments as |userComment|}}
+    {{#each article.comments as |userComment|}}
     <div class="p-3">
         {{> comment }}
     </div>
