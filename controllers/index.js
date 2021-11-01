@@ -34,7 +34,8 @@ router.get('/dashboard', async (req, res) => {
         const articles = await Articles.findAll({
             where: {
                 author_id: req.session.curUserID
-            }
+            },
+            include: [{model: Users}]
         });
         const articlesJSON = articles.map((article) => article.get({plain: true}));
         console.log(articlesJSON);
@@ -42,6 +43,6 @@ router.get('/dashboard', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
 
 module.exports = router;

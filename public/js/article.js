@@ -15,7 +15,7 @@ articleSubmit.click(async (event) => {
     // If the request was ok, navigate to the resulting articles page. Otherwise, alert that an error has occured.
     if(response.ok) {
         console.log();
-        document.location.replace('/');
+        document.location.replace('/dashboard');
     } else {
         alert('This article could not be created.');
     }
