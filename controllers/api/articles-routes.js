@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
             body: req.body.body,
             author_id: req.session.curUserID
         });
-        res.status(200).json({ article: article, response: "Article added successfully."})
+        res.status(200).json({ article: article, response: "Article added successfully."});
     } catch (err) {
         res.status(500).json(err);
     }

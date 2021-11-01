@@ -13,7 +13,20 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
+router.get('/create/', async (req, res) => {
+    if(!req.session.loggedIn) {
+        res.status(403).json({response: "You must be logged in to create an article."});
+        return;
+    }
+    
+    try {
+        res.render('create-article', { loggedIn: req.session.loggedIn });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // Get's a specific article
 router.get('/:id', async (req, res) => {
@@ -32,5 +45,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 
 module.exports = router;

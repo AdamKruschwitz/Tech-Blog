@@ -9,13 +9,14 @@
         <p>{{body}}</p>
     </div>
 </div>
+{{/with}}
 <hr>
 <h2 class="display-5">Comments</h2>
+
 <div class="row">
-    {{#each comments as |comment|}}
+    {{#each articles.comments as |userComment|}}
     <div class="p-3">
         {{> comment }}
     </div>
     {{/each}}
 </div>
-{{/with}}
