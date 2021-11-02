@@ -2,7 +2,7 @@
     <div class="row bg-dark p-3 rounded">
         {{>upvote}}
         <div class="col-11">
-            <p class="lead">{{user.username}}</p>
+            <p class="lead">{{user.username}} - {{formatDate createdAt}}</p>
             <p>{{body}}</p>
         </div>
     </div>
