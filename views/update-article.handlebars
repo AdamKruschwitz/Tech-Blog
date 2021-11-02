@@ -1,0 +1,9 @@
+{{#with article}}
+<div class="form-group p-5">
+    <label for="article-title">Title</label>
+    <input type="text" class="form-control" id="article-title" value="{{ title }}">
+    <label for="article-body">Body</label>
+    <textarea class="form-control" id="article-body">{{body}}</textarea>
+    <button type="button" class="btn btn-primary" id="submit-article-update">Submit</button>
+</div>
+{{/with}}

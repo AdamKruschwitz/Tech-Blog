@@ -1,16 +1,22 @@
-{{#with article }}
+
 <div class="row align-items-center">
+    {{#with article}}
     {{> upvote }}
+    {{/with}}
+    
     <div class="col-11">
         <div class="p-5 text-center">
-            <h1 class="display-1">{{title}} </h1>
-            <h2 class="lead">By {{user.username}}</h2>
-            <h2 class="lead">{{formatDate createdAt}}</h2>
+            {{#if editable }}
+            <a href="/articles/update/{{article.id}}">Edit this article</a>
+            {{/if}}
+            <h1 class="display-1">{{article.title}} </h1>
+            <h2 class="lead">By {{article.user.username}}</h2>
+            <h2 class="lead">{{formatDate article.createdAt}}</h2>
         </div>
         <p class="text-break">{{body}}</p>
     </div>
 </div>
-{{/with}}
+
 <hr>
 <h2 class="display-5">Comments</h2>
 <div class="form-group">

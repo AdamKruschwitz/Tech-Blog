@@ -40,7 +40,25 @@ router.get('/:id', async (req, res) => {
         }
         // console.log(article.get({plain: true}));
         const articleJSON = article.get({plain: true});
-        res.render('article', { article: articleJSON, loggedIn: req.session.loggedIn });
+        const editable = req.session.curUserID === articleJSON.user.id;
+        console.log(articleJSON);
+        console.log(editable);
+        res.render('article', { article: articleJSON, loggedIn: req.session.loggedIn, editable: editable });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/update/:id', async (req, res) => {
+    try {
+        const article = await Articles.findByPk(req.params.id);
+        if(!article) {
+            res.render('404');
+            return;
+        }
+
+        const articleJSON = article.get({plain: true});
+        res.render('update-article', {loggedIn: req.session.loggedIn, article: articleJSON});
     } catch (err) {
         res.status(500).json(err);
     }
