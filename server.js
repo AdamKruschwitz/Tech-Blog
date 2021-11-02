@@ -22,7 +22,9 @@ app.set('view engine', 'handlebars');
 // Session setup
 const sessionConfig = {
     secret: 'cancancanyoudothecancan',
-    cookie: {},
+    cookie: {
+        maxAge: 900000 // 15 minutes in miliseconds
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
