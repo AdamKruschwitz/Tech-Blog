@@ -8,6 +8,7 @@
         <div class="p-5 text-center">
             {{#if editable }}
             <a href="/articles/update/{{article.id}}">Edit this article</a>
+            <button type="button" class="btn btn-danger" id="delete-article">Delete this article</button>
             {{/if}}
             <h1 class="display-1">{{article.title}} </h1>
             <h2 class="lead">By {{article.user.username}}</h2>

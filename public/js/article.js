@@ -17,11 +17,11 @@ articleSubmit.click(async (event) => {
         document.location.replace('/dashboard');
     } else {
         alert('This article could not be created.');
+        console.log(response.json());
     }
 });
 
 const articleSubmitUpdate =$("#submit-article-update");
-
 articleSubmitUpdate.click(async (event) => {
     const title = $(event.target).siblings("#article-title").val();
     const body = $(event.target).siblings("#article-body").val();
@@ -36,7 +36,23 @@ articleSubmitUpdate.click(async (event) => {
     if(response.ok) {
         document.location.replace('/dashboard');
     } else {
-        alert('This article could not be created.');
+        alert('This article could not be updated.');
+        console.log(await response.json());
+    }
+});
+
+const deleteArticle = $("#delete-article");
+deleteArticle.click(async (event) => {
+    const id = document.location.pathname.split('/')[2];
+    const url = '/api/articles/' + id;
+    const response = await fetch(url, {
+        method: "DELETE"
+    });
+
+    if(response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('This article could not be deleted.');
         console.log(await response.json());
     }
 })
